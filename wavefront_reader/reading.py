@@ -90,7 +90,11 @@ def read_mtlfile(fname):
                         try:
                             material[prefix] = int(data)
                         except ValueError:
-                            material[prefix] = float(data)
+                            try:
+                                material[prefix] = float(data)
+                            except ValueError:
+                                material[prefix] = data  # accept string value
+                            
 
     return materials
 
